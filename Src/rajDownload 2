@@ -1,0 +1,14 @@
+		INPUT AND OUTPUT
+		----------------
+Accepting input from the keyboard:-
+---------------------------------
+Stream:-
+It represents flow of data from one 
+place to another place.
+There are 2 types of streams.
+1.InputStream:- It reads (or) receive data
+2.OutputStream:- It send (or) store(write) data to 
+some other place.
+=>All streams are represented as classes 
+in java.io package (more than 50 classes).
+

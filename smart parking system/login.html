@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Smart Parking System</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #121212; /* Black background */
+      color: #E0E0E0; /* Light grey text */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-container {
+      background-color: #1F1F1F; /* Darker grey background */
+      padding: 30px;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      text-align: center;
+      color: #4CAF50; /* Green for headings */
+      margin-bottom: 20px;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      background-color: #333;
+      border: 1px solid #555;
+      border-radius: 5px;
+      color: #E0E0E0;
+      font-size: 1em;
+    }
+
+    .input-field:focus {
+      border-color: #4CAF50;
+      outline: none;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #4CAF50; /* Green background */
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 1.1em;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #45a049; /* Darker green on hover */
+    }
+
+    .error-message {
+      color: #ff4d4d;
+      font-size: 0.9em;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.9em;
+    }
+
+    /* Checkbox and Label Alignment */
+    .checkbox-container {
+      display: flex;
+      align-items: center; /* Align checkbox and label vertically */
+      margin-top: 10px;
+    }
+
+    .checkbox-container input {
+      margin-right: 10px;
+    }
+
+    .checkbox-container label {
+      font-size: 1em;
+      color: #E0E0E0;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h1>Login</h1>
+    <form id="login-form" action="improved_parking_system.html" method="POST">
+      <div class="error-message" id="error-message"></div>
+
+      <!-- Username Field -->
+      <input type="text" id="username" name="username" class="input-field" placeholder="Username" required>
+
+      <!-- Password Field -->
+      <input type="password" id="password" name="password" class="input-field" placeholder="Password" required>
+
+
+      <!-- Login Button -->
+      <button type="submit" class="btn">Login</button>
+    </form>
+
+    <footer>
+      <p>&copy; 2024x Smart Parking System</p>
+    </footer>
+  </div>
+
+  <script>
+    // Form Validation
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+      var errorMessage = document.getElementById('error-message');
+
+      // Simple validation
+      if (username === '' || password === '') {
+        errorMessage.textContent = 'Both fields are required.';
+      } else {
+        // Clear the error message if the form is valid
+        errorMessage.textContent = '';
+        
+        // Normally here you would authenticate the user with backend
+        // For now, just redirect to the parking system page
+        window.location.href = 'improved_parking_system.html'; // Redirect to the parking system page
+      }
+    });
+  </script>
+
+</body>
+</html>

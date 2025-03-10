@@ -1,0 +1,77 @@
+/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Dark Mode and General Body Styling */
+body {
+  background-color: #121212; /* Dark background */
+  color: #E0E0E0; /* Light text for contrast */
+}
+
+/* Header Styling */
+header {
+  background-color: #000000; /* Black header */
+  padding: 1em;
+  text-align: center;
+  color: #E0E0E0; /* Light text */
+}
+
+header h1 {
+  font-size: 2em;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin-top: 1em;
+}
+
+nav ul li {
+  margin: 0 1em;
+}
+
+nav ul li a {
+  color: #E0E0E0; /* Light text */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  color: #888888; /* Accent color on hover */
+}
+
+/* Main Content Styling */
+main {
+  max-width: 900px;
+  margin: 2em auto;
+  padding: 1em;
+  background-color: #1E1E1E; /* Dark grey background */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h2, h3 {
+  color: #FFFFFF; /* White headings */
+  margin-bottom: 1em;
+}
+
+p, table {
+  margin-bottom: 1em;
+}
+
+/* Footer Styling */
+footer {
+  text-align: center;
+  padding: 1em;
+  background-color: #000000; /* Black footer */
+  color: #E0E0E0; /* Light text */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+t

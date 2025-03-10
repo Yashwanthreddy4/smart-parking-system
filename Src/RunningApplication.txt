@@ -1,0 +1,41 @@
+			Server Side
+			=========
+
+java RegisterServer
+java SenderServer
+java KeysServer
+java UsersServer
+java BetRegServer
+java PrivilagesServer
+java UploadServer
+java LoginServer
+java EndUserServer
+java ViewUsersServer
+java ViewPrivilagesServer
+java ViewKeysServer
+
+			Client Side
+			========
+
+java Register / java Login
+java GivePrivilages
+java Login
+java KeyAuthority
+
+				OR
+
+			Server Side
+			=========
+
+java RunServers
+
+			Client Side
+			========
+
+java Register / java Login
+java GivePrivilages
+java Login
+java KeyAuthority
+
+In case of same system, we can run java RunServers and java Login / java GivePrivilages / java Login /
+java KeyAuthority from same command prompt. Use Ctrl + C after press exit button.

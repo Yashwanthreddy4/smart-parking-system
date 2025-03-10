@@ -1,0 +1,13 @@
+			INHERITANCE		
+			-----------
+IIQ)What is inheritance?
+	Deriving new classes from existing 
+classes such that the new classes acquire all the 
+features of existing classes is called inheritance.
+	The syntax of inheritance is:
+	class subclass extends superclass
+
+IIQ)Why super class members are available to 
+sub class?
+Because,the sub class object contains a copy 
+of super class object.

@@ -1,0 +1,15 @@
+			Exception Handling
+			------------------
+->The error in a program is called 'Bug'.
+->Removing the errors is called 'debugging'.
+There are 3 types of errors.
+1.compile-time errors:-
+----------------------
+These are the errors in the syntax (or) 
+grammer of the language.These errors are 
+detected by java compiler at the time of compilation.
+2.Run-time errors:-
+-------------------
+These errors happen due to inefficiency of the 
+computer system to execute a statement.
+These errors are detected by JVM at run-time.

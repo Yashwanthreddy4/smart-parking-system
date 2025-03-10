@@ -1,0 +1,45 @@
+			Server Files
+			=========
+
+RegisterServer			333		RegisterServer.java
+SenderServer			666		SenderServer.java
+KeysServer			700		KeysServer.java
+UsersServer			777		UsersServer.java
+BetRegServer			200		BetRegServer.java
+PrivilagesServer			444		PrivilagesServer.java
+UploadServer			999		UploadServer.java
+LoginServer			300		LoginServer.java
+EndUserServer			111		EndUserServer.java
+exiViewUsersServer			400		ViewUsersServer.java
+ViewPrivilagesServer			600		ViewPrivilagesServer	.java
+ViewKeysServer			500		ViewKeysServer.java
+	
+
+			Client Files
+			=========
+
+Register.java
+AES.java
+Sender.java
+GivePrivilages.java
+Login.java
+EndUser.java
+KeyAuthority.java
+MainFrame.java
+
+			Data Files
+			========
+
+Users.dat
+Keys.dat
+Privilages.dat
+
+			Files
+			====
+
+HoneyKA
+HoneyKey
+HoneyEncrypt
+HoneyDecrypt
+HoneyUpload
+HoneyDownload
