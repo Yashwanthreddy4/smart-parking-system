@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Parking System</title>
+  <style>
+    /* General Layout */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #121212; /* Black background */
+      color: #E0E0E0; /* Light grey text */
+      line-height: 1.6;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px 10px;
+      background-color: #1f1f1f; /* Darker grey */
+      color: #E0E0E0;
+    }
+
+    header h1 {
+      margin-bottom: 10px;
+    }
+
+    header label {
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #1e1e1e; /* Dark grey background */
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      text-align: center;
+      color: #E0E0E0;
+      margin-bottom: 20px;
+    }
+
+    /* Parking Slots Section */
+    .parking-lot {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .slot {
+      width: 100px;
+      height: 100px;
+      background-color: #4CAF50; /* Green for available */
+      color: #FFFFFF; /* White text */
+      font-size: 1em;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .slot.selected {
+      background-color: #FFC107; /* Yellow for selected */
+    }
+
+    .slot.booked {
+      background-color: #FF0000; /* Red for booked */
+      cursor: not-allowed;
+    }
+
+    .slot:hover:not(.booked) {
+      transform: scale(1.1);
+    }
+
+    /* Booking Form */
+    .booking-form {
+      margin-top: 30px;
+      background: #1f1f1f;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .booking-form label {
+      display: block;
+      margin-bottom: 10px;
+      color: #E0E0E0;
+      font-weight: bold;
+    }
+
+    .booking-form input,
+    .booking-form button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: none;
+      font-size: 1em;
+    }
+
+    .booking-form input {
+      background: #333;
+      color: #E0E0E0;
+    }
+
+    .booking-form button {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+
+    .booking-form button:hover {
+      background-color: #45a049;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      margin-top: 20px;
+      background: #1f1f1f;
+      color: #E0E0E0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Smart Parking System</h1>
+    <label>
+      <input type="checkbox" id="dark-mode-toggle" onclick="toggleDarkMode()"> Dark Mode
+    </label>
+  </header>
+
+  <main>
+    <section>
+      <h2>Parking Slots</h2>
+      <div class="parking-lot" id="normal-slots"></div>
+    </section>
+
+    <section class="ev-status">
+      <h2>EV Charging Slots</h2>
+      <div class="parking-lot" id="ev-slots"></div>
+    </section>
+
+    <!-- Booking Form -->
+    <section class="booking-form">
+      <h2>Book a Slot</h2>
+      <form id="booking-form">
+        <label for="slot-number">Slot Number:</label>
+        <input type="text" id="slot-number" name="slot-number" readonly placeholder="Select a slot" required>
+        
+        <label for="reservation-time">Reservation Time:</label>
+        <input type="datetime-local" id="reservation-time" name="reservation-time" required>
+        
+        <button type="submit">Confirm Booking</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Smart Parking System</p>
+  </footer>
+
+  <script>
+    const normalSlots = 4;
+    const evSlots = 2;
+
+    // Dark Mode Toggle
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    // Create Slots
+    function createSlot(slotId, type) {
+      const slot = document.createElement('div');
+      slot.className = 'slot';
+      slot.textContent = `Slot ${slotId}`;
+      slot.id = `${type}-slot-${slotId}`;
+
+      slot.addEventListener('click', () => {
+        if (slot.classList.contains('booked')) {
+          alert('This slot is already booked!');
+          return;
+        }
+        document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));
+        slot.classList.add('selected');
+        document.getElementById('slot-number').value = `Slot ${slotId} (${type.toUpperCase()})`;
+      });
+      return slot;
+    }
+
+    function generateSlots(slotCount, containerId, type) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = ''; // Clear previous slots
+      for (let i = 1; i <= slotCount; i++) {
+        container.appendChild(createSlot(i, type));
+      }
+    }
+
+    // Booking Form Submission
+    document.getElementById('booking-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const slotNumber = document.getElementById('slot-number').value;
+      const reservationTime = document.getElementById('reservation-time').value;
+
+      if (!slotNumber || !reservationTime) {
+        alert('Please select a slot and specify the time.');
+        return;
+      }
+
+      try {
+        const response = await fetch('/book-slot', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            userId: 'dummyUserId', // Replace with actual userId
+            slotNumber: parseInt(slotNumber.match(/\d+/)[0]), // Extract slot number
+            time: reservationTime,
+          }),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          alert('Slot booked successfully!');
+          // Refresh slots after booking
+          fetchSlots();
+        } else {
+          alert(result.message || 'Failed to book the slot. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error booking slot:', error);
+        alert('Server error. Please try again later.');
+      }
+    });
+
+    // Fetch Slots
+    async function fetchSlots() {
+      try {
+        const response = await fetch('/slots');
+        const slots = await response.json();
+        renderSlots(slots);
+      } catch (error) {
+        console.error('Error fetching slots:', error);
+        alert('Unable to fetch slots. Please try again later.');
+      }
+    }
+
+    // Render Slots
+    function renderSlots(slots) {
+      const normalSlotsContainer = document.getElementById('normal-slots');
+      const evSlotsContainer = document.getElementById('ev-slots');
+
+      normalSlotsContainer.innerHTML = '';
+      evSlotsContainer.innerHTML = '';
+
+      slots.forEach((slot) => {
+        const slotDiv = createSlot(slot.slotNumber, slot.type);
+        if (slot.status === 'booked') {
+          slotDiv.classList.add('booked');
+        }
+
+        if (slot.type === 'normal') {
+          normalSlotsContainer.appendChild(slotDiv);
+        } else if (slot.type === 'ev') {
+          evSlotsContainer.appendChild(slotDiv);
+        }
+      });
+    }
+
+    // Initialize
+    fetchSlots();
+  </script>
+</body>
+</html>
